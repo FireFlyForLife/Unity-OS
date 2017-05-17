@@ -3,3 +3,5 @@ function WriteFromLua(text)  -- Simple function to call the function inside LuaB
 end
 
 luabinding:BindMessageFunction(WriteFromLua)
+
+luabinding:MessageFromLua("Welcome! lua here :)")

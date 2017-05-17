@@ -6,7 +6,7 @@ public class ComputerInterface : MonoBehaviour {
     public ContextMenu ContextMenu;
 
     void Start () {
-		
+		ContextMenu.gameObject.SetActive(false);
 	}
 	
 	void Update () {
@@ -14,11 +14,11 @@ public class ComputerInterface : MonoBehaviour {
 	    {
 	        if (ContextMenu.IsShowing)
 	        {
-	            ContextMenu.SetEnabled(false);
+	            ContextMenu.Close();
 	        }
 	        else
 	        {
-	            ContextMenu.SetEnabled(true);
+	            ContextMenu.ShowAt(Input.mousePosition);
 	        }
 	    }
     }

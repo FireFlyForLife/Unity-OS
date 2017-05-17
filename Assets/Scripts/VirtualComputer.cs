@@ -23,7 +23,7 @@ public class VirtualComputer : MonoBehaviour
         luaVirtualMachine["luabinding"] = binding;
 
         //Run the code contained within the file
-        object[] objects = luaVirtualMachine.DoFile(Application.streamingAssetsPath + "/" + LuaFileToLoad);
+        luaVirtualMachine.DoFile(Application.streamingAssetsPath + "/" + LuaFileToLoad);
 
         //Trigger binding in c# to call the bound Lua function
         binding.MessageToLua();

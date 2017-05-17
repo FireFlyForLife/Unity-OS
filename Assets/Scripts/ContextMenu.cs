@@ -14,18 +14,29 @@ public class ContextMenu : MonoBehaviour
 	    rectTransform = GetComponent<RectTransform>();
 	    LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
 
-        gameObject.SetActive(false);
+	    IsShowing = gameObject.activeInHierarchy;
+	}
+
+    public void ToggleEnabled()
+    {
+        SetEnabled(!IsShowing);
     }
 
     public void SetEnabled(bool state)
     {
         gameObject.SetActive(state);
         IsShowing = state;
+    }
 
-        if (state)
-        {
-            MoveContextMenu(Input.mousePosition);
-        }
+    public void ShowAt(Vector2 mousePosition)
+    {
+        SetEnabled(true);
+        MoveContextMenu(Input.mousePosition);
+    }
+
+    public void Close()
+    {
+        SetEnabled(false);
     }
 
     void MoveContextMenu(Vector2 mouseLocation)
@@ -38,7 +49,7 @@ public class ContextMenu : MonoBehaviour
 
         if (width < mouseLocation.x - size.x)
             size.x *= -1;
-        else if (height < mouseLocation.y + size.y)
+        else if (0 < mouseLocation.y - size.y)
             size.y *= -1;
 
         rectTransform.anchoredPosition = mouseLocation - size * 0.5f;
