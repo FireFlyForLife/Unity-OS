@@ -7,6 +7,7 @@ public class ComputerInterface : MonoBehaviour {
 
     void Start () {
 		ContextMenu.gameObject.SetActive(false);
+        Canvas.ForceUpdateCanvases();
 	}
 	
 	void Update () {
