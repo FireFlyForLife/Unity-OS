@@ -5,3 +5,5 @@ end
 luabinding:BindMessageFunction(WriteFromLua)
 
 luabinding:MessageFromLua("Welcome! lua here :)")
+
+debug:log("Now my function!");

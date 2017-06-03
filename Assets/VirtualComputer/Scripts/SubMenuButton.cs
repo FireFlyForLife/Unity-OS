@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MenubarItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class SubMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     protected Sprite SourceSprite { get { return sourceImage.sprite; } }
     protected Sprite PressedSprite { get { return button.spriteState.pressedSprite; } }
@@ -73,7 +73,6 @@ public class MenubarItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
         IsHovering = false;
-        Debug.Log("Pointer Exit!");
 
         UpdateSprite();
     }

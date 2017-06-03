@@ -15,7 +15,6 @@ public class ConsoleInput : MonoBehaviour, ISubmitHandler
     void Start ()
     {
         rectTransform = GetComponent<RectTransform>();
-        outputLog = GetComponent<Text>();
         inputField = GetComponent<InputField>();
     }
 	
