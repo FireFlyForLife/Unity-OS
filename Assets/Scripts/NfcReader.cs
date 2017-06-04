@@ -17,9 +17,18 @@ public class NfcReader : MonoBehaviour
 
     void Start()
     {
-
-        stream.Open(); //Open the Serial Stream.
+        
+        try
+        {
+            stream.Open(); //Open the Serial Stream.
+            
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Error opening NFC Reader: "+ex.Message.ToString());
+        }
         stream.ReadTimeout = 100;
+
 
     }
 
@@ -27,50 +36,41 @@ public class NfcReader : MonoBehaviour
 
     void Update()
     {
-
-         //Read the information
-        try
+        if (stream.IsOpen)
         {
-            string value = stream.ReadLine();
-            string[] input = value.Split('\n');
-            foreach(string s in input)
+            //Read the information
+            try
             {
-                if (s.Length > 5)
+                string value = stream.ReadLine();
+                string[] input = value.Split('\n');
+                foreach (string s in input)
                 {
-                    string ind = s.Substring(0, 6);
-                    if(ind == "floppy")
+                    if (s.Length > 5)
                     {
-                        int last = s[s.Length - 1];
-                        Debug.Log("Open Document Writer");
-                        //if (number == 1){
-                         //   Debug.Log("Open Document Writer");
-                        //}
+                        string ind = s.Substring(0, 6);
+                        if (ind == "floppy")
+                        {
+                        
+                        int program = int.Parse(s.Substring(6, 1));
+                        switch (program)
+                            {
+                                case 1:
+                                    Debug.Log("Open Document Writer");
+                                    break;
+                            }
+                        }
                     }
-                }
             }
-            //Debug.Log(value);
-            // do other stuff with the data
+                
+                // do other stuff with the data
+            }
+            catch (TimeoutException e)
+            {
+                // no-op, just to silence the timeouts. 
+                // (my arduino sends 12-16 byte packets every 0.1 secs)
+            }
         }
-        catch (TimeoutException e)
-        {
-            // no-op, just to silence the timeouts. 
-            // (my arduino sends 12-16 byte packets every 0.1 secs)
-        }
-
         //stream.BaseStream.Flush();
-
-    }
-
-
-
-    void OnGUI()
-
-    {
-
-        string newString = "Connected: ";
-
-        GUI.Label(new Rect(10, 10, 300, 100), newString); //Display new values
-
 
     }
 
