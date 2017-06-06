@@ -7,14 +7,13 @@ using UnityEngine.UI;
 
 public class Taskbar : MonoBehaviour
 {
-
     public Text timeText;
     public string time;
 
     // Use this for initialization
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame

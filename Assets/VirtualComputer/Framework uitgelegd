@@ -1,0 +1,64 @@
+Wat moet de computer doen:
+
+	Programma's openen
+	Windows laten zien
+	Interacten met de wereld
+
+	Program:
+		Virtual computer reference
+
+		Init()
+
+		Tick()
+
+		Close()
+
+	LuaProgram : Program
+		string ID
+
+		override Init(){ call function: addscript(id, script);
+							call function: lua[ID].Init() }
+		override Tick(){ call function: lua[ID].Tick(); }
+		override Close(){ call function lua[ID].Close(); 
+							call function: removescript(id); }
+
+	Virtual Computer
+		Screen
+
+		GameObject programHolder
+		List<Program> Programs
+
+		StartProgram() / addscript() http://lua-users.org/lists/lua-l/2006-05/msg00121.html
+		removescript()
+
+	Lua VM:
+		Script manager
+			table of scripts
+			addscript()
+			removescript()
+
+		Program table(string as id, table as program)
+			table["null"] = {} --as in empty lua program
+
+	Wat wil een Lua Programma:
+		UI:
+			Window:
+				Icon, Title, (basic control)
+				Menubar
+					enable/disable
+					add menubaritems and callbacks
+				Add panels/unity ui controlls
+
+		Code:
+			window
+			events:
+				mousemovement
+				keystrokes
+
+			Init()
+			Tick()
+			Close()
+
+			functions:
+				StartProgram(program_id) //should use a dictionairy of program types
+				string createprogram(table)

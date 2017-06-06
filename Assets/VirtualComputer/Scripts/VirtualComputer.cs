@@ -6,88 +6,104 @@ using LuaBindings;
 using UnityEngine;
 using LuaInterface;
 
-public class VirtualComputer : MonoBehaviour
+namespace InGameComputer
 {
-    public Canvas Screen;
-    public List<Program> Programs = new List<Program>(); //TODO: Make this visible in the inspector
-    private GameObject programHolder;
-
-    //Reference to the Lua virtual machine
-    private Lua luaVM;
-    //Filename of the Lua file to load in the Streaming Assets folder
-    public string LuaFileToLoad = "";
-
-    void Start () {
-        InitLua();
-        InitProgramHolder();
-    }
-
-    void InitLua()
+    public class VirtualComputer : MonoBehaviour
     {
-        //Init LuaBinding class that demonstrates communication
-        LuaBinding binding = new LuaBinding();
-        DebugBinding debug = new DebugBinding();
+        public Canvas Screen;
+        private ProgramManager programManager;
 
-        //Init instance of Lua virtual machine (Note: Can only init ONCE)
-        luaVM = new Lua();
-        luaVM.DoFile(Application.streamingAssetsPath + Path.DirectorySeparatorChar + "vm.lua");
-        //Tell Lua about the LuaBinding object to allow Lua to call C# functions
-        luaVM["luabinding"] = binding;
-        luaVM["debug"] = debug;
+        //Reference to the Lua virtual machine
+        public Lua luaVM;
+        //Filename of the Lua file to load in the Streaming Assets folder
+        public string LuaFileToLoad = "";
 
-        //Run the code contained within the file
-        luaVM.DoFile(Application.streamingAssetsPath + "/" + LuaFileToLoad);
-
-        //Trigger binding in c# to call the bound Lua function
-        binding.MessageToLua();
-    }
-
-    void InitProgramHolder()
-    {
-        programHolder = new GameObject("Programs", typeof(RectTransform));
-        programHolder.transform.SetParent(transform, false);
-        programHolder.transform.SetAsFirstSibling();
-    }
-	
-	void Update () {
-	    foreach (Program program in Programs)
-	    {
-	        if (program.enabled)
-	        {
-	            program.Tick();
-	        }
-	    }
-	}
-
-    Program StartProgram()
-    {
-        Program program = programHolder.AddComponent<Program>();
-        program.Init();
-
-        Programs.Add(program);
-
-        return program;
-    }
-
-    void CloseProgram(Program program)
-    {
-        int index = Programs.IndexOf(program);
-        if(index != -1)
-            CloseProgram(index);
-    }
-
-    void CloseProgram(int ProgramIndex)
-    {
-        Program program = Programs[ProgramIndex];
-        program.Close();
-        Programs.RemoveAt(ProgramIndex);
-    }
-
-    void OnDisable()
-    {
-        for (int i = 0; i < Programs.Count; i++)
+        void Start()
         {
-            CloseProgram(i);
+            InitProgramHolder();
+
+            InitLua();
         }
-    }
+
+        void InitLua()
+        {
+            //Init LuaBinding class that demonstrates communication
+            LuaBinding binding = new LuaBinding();
+            DebugBinding debug = new DebugBinding();
+
+            //Init instance of Lua virtual machine (Note: Can only init ONCE)
+            luaVM = new Lua();
+            luaVM.DoFile(Application.streamingAssetsPath + Path.DirectorySeparatorChar + "vm.lua");
+            //Tell Lua about the LuaBinding object to allow Lua to call C# functions
+            luaVM["luabinding"] = binding;
+            luaVM["debug"] = debug;
+
+            //Run the code contained within the file
+            luaVM.DoFile(Application.streamingAssetsPath + "/" + LuaFileToLoad);
+
+            //Trigger binding in c# to call the bound Lua function
+            binding.MessageToLua();
+        }
+
+        void InitProgramHolder()
+        {
+            Transform procTransform = transform.Find("Programs");
+
+            GameObject programHolder;
+            if (procTransform)
+            {
+                programHolder = procTransform.gameObject;
+                programManager = programHolder.GetComponent<ProgramManager>();
+                if (!programManager)
+                {
+                    programManager = programHolder.AddComponent<ProgramManager>();
+                }
+            }
+            else
+            {
+                programHolder = new GameObject("Programs", typeof(RectTransform), typeof(ProgramManager));
+                programHolder.transform.SetParent(transform, false);
+                programHolder.transform.SetAsFirstSibling();
+
+                programManager = programHolder.GetComponent<ProgramManager>();
+            }
+        }
+
+        void Update()
+        {
+            
+        }
+
+        //Program StartProgram()
+        //{
+        //    Program program = programHolder.AddComponent<Program>();
+        //    program.Init();
+
+        //    Programs.Add(program);
+
+        //    return program;
+        //}
+
+        //void CloseProgram(Program program)
+        //{
+        //    int index = Programs.IndexOf(program);
+        //    if (index != -1)
+        //        CloseProgram(index);
+        //}
+
+        //void CloseProgram(int ProgramIndex)
+        //{
+        //    Program program = Programs[ProgramIndex];
+        //    program.Close();
+        //    Programs.RemoveAt(ProgramIndex);
+        //}
+
+        //void OnDisable()
+        //{
+        //    for (int i = 0; i < Programs.Count; i++)
+        //    {
+        //        CloseProgram(i);
+        //    }
+        //}
+    } 
 }

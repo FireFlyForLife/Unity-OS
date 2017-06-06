@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NotepadProgram : MonoBehaviour, IProgram {
-    public void Init()
+namespace InGameComputer
+{
+    public class NotepadProgram : Program
     {
-        
-    }
+        public override void Init()
+        {
 
-    public void Tick()
-    {
-        
-    }
+        }
 
-    public void Close()
-    {
-        
-    }
+        public override void Tick()
+        {
+
+        }
+
+        public override void Close()
+        {
+
+        }
+    } 
 }

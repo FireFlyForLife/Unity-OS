@@ -6,4 +6,6 @@ luabinding:BindMessageFunction(WriteFromLua)
 
 luabinding:MessageFromLua("Welcome! lua here :)")
 
+local v = _VERSION
 debug:log("Now my function!");
+debug:log(v)

@@ -2,10 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Program : MonoBehaviour {
-    public virtual void Init() { }
+namespace InGameComputer
+{
+    public abstract class Program : MonoBehaviour, IProgram
+    {
+        public VirtualComputer Computer { get; private set; }
+        public ProgramManager ProgramManager { get; private set; }
+        public Window Window { get; private set; }
 
-    public virtual void Tick() { }
+        public void SetupComputer(VirtualComputer pc, ProgramManager m, Window w)
+        {
+            Computer = pc;
+            ProgramManager = m;
+            Window = w;
+        }
 
-    public virtual void Close() { }
+        public abstract void Init();
+        public abstract void Tick();
+        public abstract void Close();
+
+    } 
 }

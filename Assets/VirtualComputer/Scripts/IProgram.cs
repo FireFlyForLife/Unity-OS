@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IProgram
+namespace InGameComputer
 {
-    void Init();
+    public interface IProgram
+    {
+        void Init();
 
-    void Tick();
+        void Tick();
 
-    void Close();
+        void Close();
+    } 
 }

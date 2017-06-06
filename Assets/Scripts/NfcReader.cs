@@ -51,7 +51,7 @@ public class NfcReader : MonoBehaviour
             //Debug.Log(value);
             // do other stuff with the data
         }
-        catch (TimeoutException e)
+        catch (TimeoutException)
         {
             // no-op, just to silence the timeouts. 
             // (my arduino sends 12-16 byte packets every 0.1 secs)
