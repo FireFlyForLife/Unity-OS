@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class HexGrid : MonoBehaviour
@@ -11,6 +13,7 @@ public class HexGrid : MonoBehaviour
     int height = 5;
     float offsetY = -43f;
     public Vector2 PositionOffset = new Vector2(120f, 0f);
+    public List<GameObject> hexagons;
 
     void Start()
     {
@@ -33,6 +36,7 @@ public class HexGrid : MonoBehaviour
                 }
                 hex.GetComponent<RectTransform>().anchoredPosition = new Vector2(hw * x * 1.5f + offsetX + PositionOffset.x, hy * y * 0.5f + offsetY + PositionOffset.y);
                 hex.name = "Hex_" + x + "_" + y;
+                hexagons.Add(hex.transform.GetChild(0).gameObject);
                 if (x == 2)
                 {
                     if (y % 2 == 0)
