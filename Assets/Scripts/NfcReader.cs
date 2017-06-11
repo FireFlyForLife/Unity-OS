@@ -7,17 +7,18 @@ using UnityEngine.UI;
 public class NfcReader : MonoBehaviour
 {
 
-
-    SerialPort stream = new SerialPort("COM3", 9600); //Set the port (com4) and the baud rate (9600, is standard on most devices)
+    public string portname = "COM3";
+    public GameObject DocumentWriterProgram;
+    public GameObject HackerMiniGame1;
+    public GameObject HackerMiniGame2;
+    public GameObject DetonateNukesProgram;
+    SerialPort stream; //Set the port (com4) and the baud rate (9600, is standard on most devices)
     
     int state = 0;
 
-
-
-
     void Start()
     {
-        
+        stream = new SerialPort(portname, 9600);
         try
         {
             stream.Open(); //Open the Serial Stream.
@@ -56,6 +57,15 @@ public class NfcReader : MonoBehaviour
                             {
                                 case 1:
                                     Debug.Log("Open Document Writer");
+                                    break;
+                                case 2:
+                                    Debug.Log("Open Hacking Minigame 1");
+                                    break;
+                                case 3:
+                                    Debug.Log("Open Hacking Minigame 2");
+                                    break;
+                                case 4:
+                                    Debug.Log("Open Detonate Nukes Program");
                                     break;
                             }
                         }
