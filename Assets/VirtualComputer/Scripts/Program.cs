@@ -4,22 +4,35 @@ using UnityEngine;
 
 namespace InGameComputer
 {
-    public abstract class Program : MonoBehaviour, IProgram
+    public class Program : MonoBehaviour, IProgram
     {
         public VirtualComputer Computer { get; private set; }
-        public ProgramManager ProgramManager { get; private set; }
+
+        #region Convenience_Propperties
+        public ProgramManager ProgramManager {
+            get {
+                if (Computer != null)
+                    return Computer.ProgramManager;
+                return null;
+            }
+        }
+        #endregion
+
         public Window Window { get; private set; }
 
-        public void SetupComputer(VirtualComputer pc, ProgramManager m, Window w)
+        public void SetupComputer(VirtualComputer pc, Window w)
         {
             Computer = pc;
-            ProgramManager = m;
             Window = w;
         }
 
-        public abstract void Init();
-        public abstract void Tick();
-        public abstract void Close();
+        public virtual void Init() { }
+        public virtual void Init(string[] args)
+        {
+            Init();
+        }
+        public virtual void Tick() { }
+        public virtual void Close() { }
 
     } 
 }

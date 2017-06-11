@@ -11,15 +11,18 @@ namespace InGameComputer
     public class VirtualComputer : MonoBehaviour
     {
         public Canvas Screen;
-        private ProgramManager programManager;
+        public AudioSource Audio;
+        public ProgramManager ProgramManager;
 
         //Reference to the Lua virtual machine
         public Lua luaVM;
         //Filename of the Lua file to load in the Streaming Assets folder
-        public string LuaFileToLoad = "";
+        //public string LuaFileToLoad = "";
 
         void Start()
         {
+            Audio = GetComponent<AudioSource>();
+
             InitProgramHolder();
 
             InitLua();
@@ -39,7 +42,7 @@ namespace InGameComputer
             luaVM["debug"] = debug;
 
             //Run the code contained within the file
-            luaVM.DoFile(Application.streamingAssetsPath + "/" + LuaFileToLoad);
+            luaVM.DoFile(Application.streamingAssetsPath + "/" + "luademo.lua");
 
             //Trigger binding in c# to call the bound Lua function
             binding.MessageToLua();
@@ -53,10 +56,10 @@ namespace InGameComputer
             if (procTransform)
             {
                 programHolder = procTransform.gameObject;
-                programManager = programHolder.GetComponent<ProgramManager>();
-                if (!programManager)
+                ProgramManager = programHolder.GetComponent<ProgramManager>();
+                if (!ProgramManager)
                 {
-                    programManager = programHolder.AddComponent<ProgramManager>();
+                    ProgramManager = programHolder.AddComponent<ProgramManager>();
                 }
             }
             else
@@ -65,7 +68,7 @@ namespace InGameComputer
                 programHolder.transform.SetParent(transform, false);
                 programHolder.transform.SetAsFirstSibling();
 
-                programManager = programHolder.GetComponent<ProgramManager>();
+                ProgramManager = programHolder.GetComponent<ProgramManager>();
             }
         }
 

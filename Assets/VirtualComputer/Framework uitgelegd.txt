@@ -28,7 +28,7 @@ Wat moet de computer doen:
 		GameObject programHolder
 		List<Program> Programs
 
-		StartProgram() / addscript() http://lua-users.org/lists/lua-l/2006-05/msg00121.html
+		StartProgram() / addscript() http://lua-users.org/lists/lua-l/2006-05/msg00121.html (ofnie)
 		removescript()
 
 	Lua VM:

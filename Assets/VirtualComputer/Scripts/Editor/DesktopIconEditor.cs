@@ -29,6 +29,7 @@ public class DesktopIconEditor : Editor
         textReferenceProperty = serializedObject.FindProperty("text");
 
         desktopIcon = (DesktopIcon) target;
+        desktopIcon.RefreshAppearence();
     }
 
     public override void OnInspectorGUI()
@@ -49,6 +50,6 @@ public class DesktopIconEditor : Editor
 
         serializedObject.ApplyModifiedProperties();
 
-        desktopIcon.RefreshUiterlijk();
+        desktopIcon.RefreshAppearence();
     }
 }

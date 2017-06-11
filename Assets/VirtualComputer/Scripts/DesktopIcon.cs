@@ -19,17 +19,18 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
 	void Start ()
 	{
-	    RefreshUiterlijk();
+	    RefreshAppearence();
 	}
 
-    public void RefreshUiterlijk()
+    public void RefreshAppearence()
     {
         if(icon) icon.texture = iconTexture;
         if(text) text.text = undersideText;
     }
 	
-	void Update () {
-		
+	void Update ()
+	{
+	    
 	}
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)

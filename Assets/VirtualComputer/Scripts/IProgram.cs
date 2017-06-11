@@ -6,7 +6,7 @@ namespace InGameComputer
 {
     public interface IProgram
     {
-        void Init();
+        void Init(string[] args);
 
         void Tick();
 
