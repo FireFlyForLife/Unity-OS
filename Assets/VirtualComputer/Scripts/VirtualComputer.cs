@@ -9,13 +9,15 @@ using LuaInterface;
 public class VirtualComputer : MonoBehaviour
 {
     public Canvas Screen;
+    public AudioSource Audio;
+    public List<String> files;
     public List<Program> Programs = new List<Program>(); //TODO: Make this visible in the inspector
     private GameObject programHolder;
 
     //Reference to the Lua virtual machine
     private Lua luaVM;
     //Filename of the Lua file to load in the Streaming Assets folder
-    public string LuaFileToLoad = "";
+    //public string LuaFileToLoad = "";
 
     void Start () {
         InitLua();
@@ -36,7 +38,7 @@ public class VirtualComputer : MonoBehaviour
         luaVM["debug"] = debug;
 
         //Run the code contained within the file
-        luaVM.DoFile(Application.streamingAssetsPath + "/" + LuaFileToLoad);
+        luaVM.DoFile(Application.streamingAssetsPath + "/" + "luademo.lua");
 
         //Trigger binding in c# to call the bound Lua function
         binding.MessageToLua();
@@ -59,28 +61,33 @@ public class VirtualComputer : MonoBehaviour
 	    }
 	}
 
-    Program StartProgram()
+    public Program StartProgram()
+    {
+        return StartProgram(new string[0]);
+    }
+
+    public Program StartProgram(string[] args)
     {
         Program program = programHolder.AddComponent<Program>();
-        program.Init();
+        program.Init(args);
 
         Programs.Add(program);
 
         return program;
     }
 
-    void CloseProgram(Program program)
+    public void CloseProgram(Program program)
     {
         int index = Programs.IndexOf(program);
         if(index != -1)
             CloseProgram(index);
     }
 
-    void CloseProgram(int ProgramIndex)
+    public void CloseProgram(int programIndex)
     {
-        Program program = Programs[ProgramIndex];
+        Program program = Programs[programIndex];
         program.Close();
-        Programs.RemoveAt(ProgramIndex);
+        Programs.RemoveAt(programIndex);
     }
 
     void OnDisable()

@@ -7,7 +7,10 @@ using UnityEngine.UI;
 
 public class ConsoleInput : MonoBehaviour, ISubmitHandler
 {
+#pragma warning disable 0414
+    // ReSharper disable once NotAccessedField.Local 
     private RectTransform rectTransform;
+#pragma warning restore 0414
 
     private InputField inputField;
     [SerializeField] private Text outputLog;

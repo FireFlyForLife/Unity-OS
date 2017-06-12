@@ -24,8 +24,6 @@ public class HexGrid : MonoBehaviour
                 float hw = hex.GetComponent<RectTransform>().rect.width;
                 float hy = hex.GetComponent<RectTransform>().rect.height;
 
-                Debug.Log(hw.ToString() + ":" + hy.ToString());
-
                 float offsetX = 0f;
                 if (y % 2 == 0)
                 {

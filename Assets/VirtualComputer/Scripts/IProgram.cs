@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IProgram
 {
-    void Init();
+    void Init(string[] args);
 
     void Tick();
 
