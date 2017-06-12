@@ -57,7 +57,6 @@ public class HexGrid : MonoBehaviour
                         Destroy(hex);
                     }
                 }
-                Debug.Log(hexagons[x, y]);
             }
         }
         populateFromJson();

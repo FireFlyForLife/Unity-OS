@@ -15,6 +15,7 @@ public class WindowHeader : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
+        transform.parent.SetAsLastSibling();
         offset = (Vector2)parent.transform.position - eventData.position;
     }
 

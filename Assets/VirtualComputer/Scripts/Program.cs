@@ -8,22 +8,27 @@ namespace InGameComputer
     {
         public VirtualComputer Computer { get; private set; }
 
-        #region Convenience_Propperties
-        public ProgramManager ProgramManager {
-            get {
-                if (Computer != null)
-                    return Computer.ProgramManager;
-                return null;
-            }
-        }
+        #region Convenience Propperties
+        public ProgramManager ProgramManager { get { return Computer != null ? Computer.ProgramManager : null; } }
         #endregion
 
-        public Window Window { get; private set; }
+        [SerializeField]private Window window;
+        public Window Window
+        {
+            get { return window; }
+            private set { window = value; }
+        }
+        
+        //if window is empty
+        public GameObject WindowPrefab;
 
-        public void SetupComputer(VirtualComputer pc, Window w)
+        public void SetupComputer(VirtualComputer pc)
         {
             Computer = pc;
-            Window = w;
+            if (!Window)
+            {
+                Window = Computer.CreateWindow(WindowPrefab);
+            }
         }
 
         public virtual void Init() { }

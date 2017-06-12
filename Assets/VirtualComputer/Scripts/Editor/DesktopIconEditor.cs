@@ -3,53 +3,56 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(DesktopIcon))]
-[CanEditMultipleObjects]
-public class DesktopIconEditor : Editor
+namespace InGameComputer
 {
-    private DesktopIcon desktopIcon;
-
-    private SerializedProperty textureProperty;
-    private SerializedProperty underTextProperty;
-    private SerializedProperty selectedColorProperty;
-
-    private bool foldout = false;
-    private SerializedProperty iconReferenceProperty;
-    private SerializedProperty textBackgroundReferenceProperty;
-    private SerializedProperty textReferenceProperty;
-
-    void OnEnable()
+    [CustomEditor(typeof(DesktopIcon))]
+    [CanEditMultipleObjects]
+    public class DesktopIconEditor : Editor
     {
-        textureProperty = serializedObject.FindProperty("iconTexture");
-        underTextProperty = serializedObject.FindProperty("undersideText");
-        selectedColorProperty = serializedObject.FindProperty("selectedColor");
+        private DesktopIcon desktopIcon;
 
-        iconReferenceProperty = serializedObject.FindProperty("icon");
-        textBackgroundReferenceProperty = serializedObject.FindProperty("underTextImage");
-        textReferenceProperty = serializedObject.FindProperty("text");
+        private SerializedProperty textureProperty;
+        private SerializedProperty underTextProperty;
+        private SerializedProperty selectedColorProperty;
 
-        desktopIcon = (DesktopIcon) target;
-        desktopIcon.RefreshAppearence();
-    }
+        private bool foldout = false;
+        private SerializedProperty iconReferenceProperty;
+        private SerializedProperty textBackgroundReferenceProperty;
+        private SerializedProperty textReferenceProperty;
 
-    public override void OnInspectorGUI()
-    {
-        serializedObject.Update();
-
-        EditorGUILayout.PropertyField(textureProperty);
-        EditorGUILayout.PropertyField(underTextProperty);
-        EditorGUILayout.PropertyField(selectedColorProperty);
-
-        foldout = EditorGUILayout.Foldout(foldout, "References");
-        if (foldout)
+        void OnEnable()
         {
-            EditorGUILayout.PropertyField(iconReferenceProperty);
-            EditorGUILayout.PropertyField(textBackgroundReferenceProperty);
-            EditorGUILayout.PropertyField(textReferenceProperty);
+            textureProperty = serializedObject.FindProperty("iconTexture");
+            underTextProperty = serializedObject.FindProperty("undersideText");
+            selectedColorProperty = serializedObject.FindProperty("selectedColor");
+
+            iconReferenceProperty = serializedObject.FindProperty("icon");
+            textBackgroundReferenceProperty = serializedObject.FindProperty("underTextImage");
+            textReferenceProperty = serializedObject.FindProperty("text");
+
+            desktopIcon = (DesktopIcon)target;
+            desktopIcon.RefreshAppearence();
         }
 
-        serializedObject.ApplyModifiedProperties();
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
 
-        desktopIcon.RefreshAppearence();
-    }
+            EditorGUILayout.PropertyField(textureProperty);
+            EditorGUILayout.PropertyField(underTextProperty);
+            EditorGUILayout.PropertyField(selectedColorProperty);
+
+            foldout = EditorGUILayout.Foldout(foldout, "References");
+            if (foldout)
+            {
+                EditorGUILayout.PropertyField(iconReferenceProperty);
+                EditorGUILayout.PropertyField(textBackgroundReferenceProperty);
+                EditorGUILayout.PropertyField(textReferenceProperty);
+            }
+
+            serializedObject.ApplyModifiedProperties();
+
+            desktopIcon.RefreshAppearence();
+        }
+    } 
 }

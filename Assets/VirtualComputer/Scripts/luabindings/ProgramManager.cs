@@ -11,14 +11,21 @@ namespace InGameComputer
     {
         public VirtualComputer Computer;
 
-        public List<IProgram> Programs = new List<IProgram>();
-        public List<Program> StartupPrograms = new List<Program>();
+        public List<IProgram> Programs;
 
         public LuaFunction on_tick;
 
         void Start()
         {
             Computer = GetComponentInParent<VirtualComputer>();
+
+            IProgram[] programs = GetComponents<IProgram>();
+            Programs = new List<IProgram>(programs);
+
+            foreach (IProgram program in Programs)
+            {
+                program.Init(new string[0]);
+            }
         }
 
         void Update()
@@ -26,25 +33,38 @@ namespace InGameComputer
             on_tick.CallIfNotNull();
         }
 
-        public T StartProgram<T>() where T : Program
+        public T StartCustomProgram<T>(string[] args = null) where T : Component, IProgram
         {
             T program = gameObject.AddComponent<T>();
-            
-            program.Init();
 
-            AddProgram(program);
+            AddCustomProgram(program, args);
 
             return program;
         }
 
-        public void AddProgram(IProgram program)
+        public void AddCustomProgram(IProgram program, string[] args = null)
         {
             Programs.Add(program);
+
+            program.Init(args ?? new string[0]);
         }
 
-        public void AddProgram(Program program)
+        public T StartProgram<T>(string[] args = null) where T : Program
         {
-            
+            T program = gameObject.AddComponent<T>();
+
+            AddProgram(program, args);
+
+            return program;
+        }
+
+        public void AddProgram(Program program, string[] args = null)
+        {
+            Programs.Add(program);
+
+            program.SetupComputer(Computer);
+
+            program.Init(args ?? new string[0]);
         }
 
         public void CloseProgram(IProgram program)

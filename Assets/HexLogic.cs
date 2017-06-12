@@ -124,8 +124,7 @@ public class HexLogic : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             
         }
     }
-    [SerializeField]
-    private bool active;
+    [SerializeField] private bool active;
     private float[] lineLocations_x = new float[] { 0.5f, 1, 1, 0.5f, 0, 0 };
     private float[] lineLocations_y = new float[] { 1, 0.84f, 0.16f, 0, 0.16f, 0.84f };
     // Use this for initialization
@@ -157,15 +156,6 @@ public class HexLogic : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void CheckSides()
     {
-        //HexLogic[] hexouter = new HexLogic[6];
-        //hexouter[0] = grid.hexagons[x, y+2]; //hex_up
-        //hexouter[3] = grid.hexagons[x, y - 2]; //hex_down
-        //hexouter[5] = grid.hexagons[x, y + 1]; //hex_left_up
-        //hexouter[4] = grid.hexagons[x, y - 1]; //hex_left_down
-        //hexouter[1] = grid.hexagons[x+1, y + 1]; //hex_right_up
-        //hexouter[2] = grid.hexagons[x+1, y - 1]; //hex_right_down
-
-        List<HexLogic> hexs = grid.GetNeighbors(x, y);
 
         for (int i = 0; i < sides.Length; i++)
         {
@@ -183,18 +173,6 @@ public class HexLogic : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 }
             }
         }
-
-        //bool[] collectedsides = new bool[6];
-        //for (int i = 0; i < collectedsides.Length; i++)
-        //{
-        //    if(collectedsides[i] == sides[i])
-        //    {
-        //        if (hexouter[i].Active)
-        //        {
-        //            Active = true;
-        //        }
-        //    }
-        //}
      }
         private bool[] ShiftRight(bool[] sides)
         {

@@ -77,6 +77,21 @@ namespace InGameComputer
             
         }
 
+        public Window CreateWindow(GameObject prefab)
+        {
+            GameObject windowObject = Instantiate(prefab, Screen.transform, false);
+            Window window = windowObject.GetComponent<Window>();
+            if (window)
+            {
+                return window;
+            }
+            else
+            {
+                Destroy(windowObject);
+                return null;
+            }
+        }
+
         //Program StartProgram()
         //{
         //    Program program = programHolder.AddComponent<Program>();

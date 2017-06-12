@@ -14,7 +14,7 @@ public class NfcReader : MonoBehaviour
     public GameObject DetonateNukesProgram;
     SerialPort stream; //Set the port (com4) and the baud rate (9600, is standard on most devices)
     
-    int state = 0;
+    //int state = 0;
 
     void Start()
     {
@@ -78,6 +78,7 @@ public class NfcReader : MonoBehaviour
             {
                 // no-op, just to silence the timeouts. 
                 // (my arduino sends 12-16 byte packets every 0.1 secs)
+                Debug.Log("Nfc reader timeout: " + e.StackTrace);
             }
         }
         //stream.BaseStream.Flush();

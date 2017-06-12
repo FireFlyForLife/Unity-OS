@@ -9,7 +9,7 @@ public class ConsoleInput : MonoBehaviour
 {
     public string folder = "c:\\>";
 
-    private RectTransform rectTransform;
+    public RectTransform RectTransform {get {return transform as RectTransform;} }
 
     private InputField inputField;
     private InputFieldEnterSubmit submit;
@@ -17,7 +17,6 @@ public class ConsoleInput : MonoBehaviour
 
     void Start ()
     {
-        rectTransform = GetComponent<RectTransform>();
         inputField = GetComponent<InputField>();
         submit = GetComponent<InputFieldEnterSubmit>();
         submit.EnterSubmit.AddListener(OnSubmit);
