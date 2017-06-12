@@ -13,7 +13,7 @@ public class NfcReader : MonoBehaviour
     public GameObject HackerMiniGame2;
     public GameObject DetonateNukesProgram;
     SerialPort stream; //Set the port (com4) and the baud rate (9600, is standard on most devices)
-
+    
     int state = 0;
 
     void Start()
