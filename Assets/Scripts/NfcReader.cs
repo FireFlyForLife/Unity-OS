@@ -22,11 +22,11 @@ public class NfcReader : MonoBehaviour
         try
         {
             stream.Open(); //Open the Serial Stream.
-            
+
         }
         catch (Exception ex)
         {
-            Debug.Log("Error opening NFC Reader: "+ex.Message.ToString());
+            Debug.Log("Error opening NFC Reader: " + ex.Message.ToString());
         }
         stream.ReadTimeout = 100;
 
@@ -51,9 +51,9 @@ public class NfcReader : MonoBehaviour
                         string ind = s.Substring(0, 6);
                         if (ind == "floppy")
                         {
-                        
-                        int program = int.Parse(s.Substring(6, 1));
-                        switch (program)
+
+                            int program = int.Parse(s.Substring(6, 1));
+                            switch (program)
                             {
                                 case 1:
                                     Debug.Log("Open Document Writer");
@@ -70,8 +70,8 @@ public class NfcReader : MonoBehaviour
                             }
                         }
                     }
-            }
-                
+                }
+
                 // do other stuff with the data
             }
             catch (TimeoutException e)

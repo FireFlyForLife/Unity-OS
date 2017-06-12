@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class ConsoleInput : MonoBehaviour
 {
     public string folder = "c:\\>";
-
+#pragma warning restore 0414
     public RectTransform RectTransform {get {return transform as RectTransform;} }
 
     private InputField inputField;
