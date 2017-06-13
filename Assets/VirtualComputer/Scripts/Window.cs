@@ -16,12 +16,23 @@ public class Window : MonoBehaviour {
         get { return icon.sprite; }
     }
 
+    public GameObject Root
+    {
+        get
+        {
+            Transform tr = transform.Find("Root");
+            return tr ? tr.gameObject : null;
+        }
+    }
+
     [SerializeField] private Text titleText;
     [SerializeField] private Image icon;
 
-    void Start () {
-		
-	}
+    void Start ()
+    {
+        if (!titleText) titleText = transform.Find("Header/TitleArea/Text").GetComponent<Text>();
+        if (!icon) icon = transform.Find("Header/TitleArea/ProgramIcon").GetComponent<Image>();
+    }
 	
 	void Update () {
 		

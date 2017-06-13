@@ -24,6 +24,12 @@ namespace InGameComputer
 
             foreach (IProgram program in Programs)
             {
+                Program instance = program as Program;
+                if (instance)
+                {
+                    instance.SetupComputer(Computer);
+                }
+
                 program.Init(new string[0]);
             }
         }
