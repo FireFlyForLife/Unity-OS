@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.IO;
+using System.Text;
 
 public class HexGrid : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class HexGrid : MonoBehaviour
     float offsetY = -43f;
     public Vector2 PositionOffset = new Vector2(120f, 0f);
     public string json;
+    public string jsonFile;
     public HexLogic[,] hexagons;
     public GameObject hexagonInfo;
     public Texture2D[] lines;
@@ -65,8 +68,13 @@ public class HexGrid : MonoBehaviour
     }
     private void populateFromJson()
     {
+        string fullJsonPath = Path.Combine(Application.streamingAssetsPath, jsonFile);
+        if (!System.IO.File.Exists(fullJsonPath))
+            throw new FileNotFoundException("jsonFile is not found inside StreamingAssets");
+
+        string jsonString = File.ReadAllText(fullJsonPath, Encoding.Default);
         jsonObject = new JSONObject(JSONObject.Type.ARRAY);
-        jsonObject = new JSONObject(json);
+        jsonObject = new JSONObject(jsonString);
 
         foreach (JSONObject j in jsonObject.list)
         {
