@@ -9,6 +9,7 @@ public class LoginHandler : MonoBehaviour {
     public GameObject LoadingText;
     public GameObject LoginScreen;
     private InputField passwordtext;
+    private bool goscreen = false;
     // Use this for initialization
     void Start () {
         passwordtext = password.GetComponent<InputField>();
@@ -22,7 +23,13 @@ public class LoginHandler : MonoBehaviour {
             {
                 LoginScreen.SetActive(true);
                 LoadingText.SetActive(true);
-                StartCoroutine(LoginScreenWait());
+                if (!goscreen)
+                {
+                    goscreen = true;
+                    StartCoroutine(LoginScreenWait());
+                    
+                }
+                
                 
             } 
         }
@@ -30,6 +37,6 @@ public class LoginHandler : MonoBehaviour {
     IEnumerator LoginScreenWait()
     {
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene("OS1", LoadSceneMode.Additive);
+        SceneManager.LoadScene("OS1");
     }
 }
