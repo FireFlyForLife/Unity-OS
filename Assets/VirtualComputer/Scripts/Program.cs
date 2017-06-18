@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace InGameComputer
 {
+    public class  ProgramStartArguments<TProgram> where TProgram : Component, IProgram
+    {
+        
+    }
+
     public class Program : MonoBehaviour, IProgram
     {
         public VirtualComputer Computer { get; private set; }

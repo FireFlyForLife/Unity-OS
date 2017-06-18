@@ -6,7 +6,7 @@ public class ComputerInterface : MonoBehaviour {
     public ContextMenu ContextMenu;
 
     void Start () {
-		ContextMenu.gameObject.SetActive(false);
+        if(ContextMenu) ContextMenu.gameObject.SetActive(false);
         Canvas.ForceUpdateCanvases();
 	}
 	

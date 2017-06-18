@@ -13,6 +13,7 @@ namespace InGameComputer
         public Canvas Screen;
         public AudioSource Audio;
         public ProgramManager ProgramManager;
+        //TODO: Add a mudules array. ex: disk drives, ethernet
 
         //Reference to the Lua virtual machine
         public Lua luaVM;

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.IO.Ports;
 using System;
+using InGameComputer;
 using UnityEngine.UI;
 
 public class NfcReader : MonoBehaviour
@@ -14,10 +15,15 @@ public class NfcReader : MonoBehaviour
     public GameObject DetonateNukesProgram;
     SerialPort stream; //Set the port (com4) and the baud rate (9600, is standard on most devices)
     
-    //int state = 0;
+    //QaD
+    private VirtualComputer computer;
+    private ProgramManager programs;
 
     void Start()
     {
+        computer = GetComponent<VirtualComputer>();
+        programs = computer.ProgramManager;
+
         stream = new SerialPort(portname, 9600);
         try
         {
@@ -55,17 +61,20 @@ public class NfcReader : MonoBehaviour
                             int program = int.Parse(s.Substring(6, 1));
                             switch (program)
                             {
-                                case 1:
-                                    Debug.Log("Open Document Writer");
-                                    break;
                                 case 2:
                                     Debug.Log("Open Hacking Minigame 1");
+                                    HackerMiniGame1.SetActive(true);
+                                    HackerMiniGame2.SetActive(false);
+                                    break;
+                                case 1:
+                                    Debug.Log("Open Hacking Minigame 2");
+                                    HackerMiniGame2.SetActive(true);
+                                    HackerMiniGame1.SetActive(false);
                                     break;
                                 case 3:
-                                    Debug.Log("Open Hacking Minigame 2");
-                                    break;
-                                case 4:
                                     Debug.Log("Open Detonate Nukes Program");
+                                    //Show popup
+                                    DetonateNukesProgram.SetActive(true);
                                     break;
                             }
                         }

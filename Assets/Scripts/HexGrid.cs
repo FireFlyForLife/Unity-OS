@@ -28,6 +28,7 @@ public class HexGrid : MonoBehaviour
     public Point End = new Point(2, 1);
     public Sides EndSide = Sides.BOTTOM;
     public Image EndLine;
+    public bool Completed = false;
 
     void Start()
     {
@@ -106,6 +107,7 @@ public class HexGrid : MonoBehaviour
     {
         //Clear everything
         EndLine.color = Color.white;
+        Completed = false;
 
         for (int x = 0; x < hexagons.GetLength(0); x++)
         {
@@ -133,6 +135,7 @@ public class HexGrid : MonoBehaviour
         {
             Debug.Log("HOERA");
             EndLine.color = Color.red;
+            Completed = true;
         }
     }
 

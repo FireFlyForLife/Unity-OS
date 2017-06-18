@@ -9,6 +9,7 @@ namespace InGameComputer
     public class DecryptorProgram : Program
     {
         public InputField[] NumFields = new InputField[4];
+        public GameObject WASDWNAISDNOI;
 
         [SerializeField] private AudioClip errorAudioClip;
 
@@ -37,6 +38,8 @@ namespace InGameComputer
                 Debug.Log("Entered the correct code!");
 
                 //popup with the new code for the safe
+                var obj = Instantiate(WASDWNAISDNOI, Computer.Screen.transform);
+                obj.SetActive(true);
             }
             else
             {

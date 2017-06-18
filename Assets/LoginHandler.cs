@@ -37,6 +37,6 @@ public class LoginHandler : MonoBehaviour {
     IEnumerator LoginScreenWait()
     {
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene("OS1");
+        SceneManager.LoadScene(1);
     }
 }
