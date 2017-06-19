@@ -11,6 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ProjectVrijScene.unity
     guid: a80f90eabf27f8049b4c5e806c74159f
-  - enabled: 0
-    path: Assets/OS1.unity
+  - enabled: 1
+    path: Assets/Scenes/OS1.unity
     guid: 094a6768b42fb30488326524b85513ff

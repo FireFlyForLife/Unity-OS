@@ -13,6 +13,8 @@ namespace InGameComputer
         public Canvas Screen;
         public AudioSource Audio;
         public ProgramManager ProgramManager;
+        public Taskbar Taskbar;
+        [SerializeField] private GameObject TaskbarButton;
         //TODO: Add a mudules array. ex: disk drives, ethernet
 
         //Reference to the Lua virtual machine
@@ -82,8 +84,16 @@ namespace InGameComputer
         {
             GameObject windowObject = Instantiate(prefab, Screen.transform, false);
             Window window = windowObject.GetComponent<Window>();
+            
             if (window)
             {
+                GameObject taskbarbutton = Instantiate(TaskbarButton, Taskbar.gameObject.transform, false);
+                TaskbarButton script = taskbarbutton.GetComponent<TaskbarButton>();
+                if (script)
+                {
+                    window.Taskbarbutton = script;
+                    script.window = window;
+                }
                 return window;
             }
             else

@@ -19,8 +19,8 @@ public class Taskbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time = System.DateTime.Now.ToString("hh:mm");
-        timeText.text = time.ToString();
+        //time = System.DateTime.Now.ToString("hh:mm");
+        //timeText.text = time.ToString();
 
         //if (Input.GetMouseButtonDown(1))
         //{
