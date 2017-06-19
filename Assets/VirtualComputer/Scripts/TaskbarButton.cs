@@ -11,6 +11,11 @@ namespace InGameComputer
             set { GetComponentInChildren<Text>().text = value; }
             get { return GetComponentInChildren<Text>().text;  }
         }
+        public Sprite IconInButton
+        {
+            set { transform.GetChild(1).GetComponent<Image>().sprite = value; }
+            get { return transform.GetChild(1).GetComponent<Image>().sprite; }
+        }
         public Window window;
         // Use this for initialization
         void Start()
