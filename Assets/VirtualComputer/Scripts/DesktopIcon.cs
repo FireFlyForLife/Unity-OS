@@ -1,7 +1,7 @@
-﻿using System;
+﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -21,9 +21,11 @@ namespace InGameComputer
         Text text;
 
         [SerializeField]
-        Texture iconTexture;
+        public Texture iconTexture;
         [SerializeField]
-        String undersideText = "Program.exe";
+        public String undersideText = "Program.exe";
+        [SerializeField]
+        public GameObject program;
 
         private Vector2 dragOffset = Vector2.zero;
 
@@ -72,7 +74,9 @@ namespace InGameComputer
         {
             if (eventData.clickCount >= 2)
             {
-
+                program.SetActive(true);
+                eventData.clickTime = 0;
+                eventData.clickCount = 0;
             }
         }
     } 
