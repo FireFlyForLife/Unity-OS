@@ -23,7 +23,7 @@ namespace UnityEngine.UI.Extensions
         private Vector3 m_originalCoods = Vector3.zero;
         private Canvas m_canvas;
         private RectTransform m_canvasRectTransform;
-        public int KeepWindowInCanvas = 5;            // # of pixels of the window that must stay inside the canvas view.
+        public int KeepWindowInCanvas = 5;            // # of pixels of the Window that must stay inside the canvas view.
 
         // Use this for initialization
         void Start()
@@ -104,7 +104,7 @@ namespace UnityEngine.UI.Extensions
                 max = Vector2.Scale(canvasSize, Vector2.one - m_canvasRectTransform.pivot);
             }
 
-            // keep window inside canvas
+            // keep Window inside canvas
             localPosition.x = Mathf.Clamp(localPosition.x, min.x + KeepWindowInCanvas, max.x - KeepWindowInCanvas);
             localPosition.y = Mathf.Clamp(localPosition.y, min.y + KeepWindowInCanvas, max.y - KeepWindowInCanvas);
 

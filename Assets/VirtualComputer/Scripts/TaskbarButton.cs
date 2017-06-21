@@ -7,29 +7,38 @@ namespace InGameComputer
 {
     public class TaskbarButton : MonoBehaviour
     {
-        public string titleInButton {
+        public string titleInButton
+        {
             set { GetComponentInChildren<Text>().text = value; }
-            get { return GetComponentInChildren<Text>().text;  }
+            get { return GetComponentInChildren<Text>().text; }
         }
         public Sprite IconInButton
         {
-            set { transform.GetChild(1).GetComponent<Image>().sprite = value; }
-            get { return transform.GetChild(1).GetComponent<Image>().sprite; }
+            set { if (transform.childCount > 1) transform.GetChild(1).GetComponent<Image>().sprite = value; }
+            get { return transform.childCount > 1 ? transform.GetChild(1).GetComponent<Image>().sprite : null; }
         }
-        public Window window;
-        // Use this for initialization
+
+        private Window window;
+        public Window Window { set { window = value; SetDecoration(window.tbvars); } get { return window; } }
+
+        public void SetDecoration(Window.startvariables vars)
+        {
+            titleInButton = vars.buttontext;
+            IconInButton = vars.icon;
+        }
+
         void Start()
         {
             GetComponent<Button>().onClick.AddListener(onClick);
         }
         void onClick()
         {
-            window.IsMinimized = !window.IsMinimized;
+            Window.IsMinimized = !Window.IsMinimized;
         }
-        // Update is called once per frame
+
         void Update()
         {
 
         }
-    } 
+    }
 }

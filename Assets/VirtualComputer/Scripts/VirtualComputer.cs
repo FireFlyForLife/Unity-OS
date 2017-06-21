@@ -29,6 +29,8 @@ namespace InGameComputer
             InitProgramHolder();
 
             InitLua();
+
+            InitWindows();
         }
 
         void InitLua()
@@ -75,32 +77,56 @@ namespace InGameComputer
             }
         }
 
-        void Update()
+        void InitWindows()
         {
             
+        }
+
+        void Update()
+        {
+            foreach (Window window in GetComponentsInChildren<Window>())
+            {
+                if (window.gameObject.activeInHierarchy && !window.Taskbarbutton)
+                {
+                    Debug.Log("Linking button!");
+
+                    TaskbarButton button = CreateTaskbarButton();
+                    LinkWindowToTaskbar(window, button);
+                }
+            }
         }
 
         public Window CreateWindow(GameObject prefab)
         {
             GameObject windowObject = Instantiate(prefab, Screen.transform, false);
+
             Window window = windowObject.GetComponent<Window>();
-            
-            if (window)
+            TaskbarButton taskbarButton = Taskbar.AddButton();
+
+            if (window && taskbarButton)
             {
-                GameObject taskbarbutton = Instantiate(TaskbarButton, Taskbar.gameObject.transform, false);
-                TaskbarButton script = taskbarbutton.GetComponent<TaskbarButton>();
-                if (script)
-                {
-                    window.Taskbarbutton = script;
-                    script.window = window;
-                }
+                LinkWindowToTaskbar(window, taskbarButton);
                 return window;
             }
-            else
-            {
-                Destroy(windowObject);
-                return null;
-            }
+
+            Destroy(windowObject);
+            Taskbar.RemoveButton(taskbarButton);
+            return null;
+        }
+
+        /// <summary>
+        /// Alias for Taskbar.AddButton()
+        /// </summary>
+        /// <returns>Created TaskbarButton</returns>
+        public TaskbarButton CreateTaskbarButton()
+        {
+            return Taskbar.AddButton();
+        }
+
+        public void LinkWindowToTaskbar(Window window, TaskbarButton taskbarButton)
+        {
+            window.Taskbarbutton = taskbarButton;
+            taskbarButton.Window = window;
         }
 
         //Program StartProgram()

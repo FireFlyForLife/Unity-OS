@@ -84,7 +84,7 @@ public class AutoSavePreferences
 		saveUnnamedNewScene = GUILayout.Toggle (saveUnnamedNewScene, "Save new unnamed scenes");
 		EditorGUILayout.HelpBox ("This will result in a prompt that asks for a name for the scene", MessageType.Info);
 	
-		saveOnHierarchyChanges = EditorGUILayout.BeginToggleGroup ("Save on hierarchy window changes", saveOnHierarchyChanges);
+		saveOnHierarchyChanges = EditorGUILayout.BeginToggleGroup ("Save on hierarchy Window changes", saveOnHierarchyChanges);
 		EditorGUILayout.PrefixLabel ("Number of changes before save");
 		hierarchyChangeCountTrigger = EditorGUILayout.IntSlider (hierarchyChangeCountTrigger, 1, 100);
 		EditorGUILayout.EndToggleGroup ();

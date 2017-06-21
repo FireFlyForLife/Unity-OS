@@ -33,7 +33,7 @@ public class InitPhoneCall : MonoBehaviour {
         {
             Debug.Log("Error reading switch: " + ex.Message.ToString());
         }
-        stream.ReadTimeout = 100;
+        stream.ReadTimeout = 20;
 
         StartCoroutine(PhoneCall());
 	}
@@ -62,11 +62,11 @@ public class InitPhoneCall : MonoBehaviour {
                         audiosource.Stop();
                         if (!launchCode)
                         {
-                            audiosource.PlayOneShot(phonecall, 0.5f);
+                            audiosource.PlayOneShot(phonecall, 0.1f);
                         }
                         else
                         {
-                            audiosource.PlayOneShot(phonecall2, 0.5f);
+                            audiosource.PlayOneShot(phonecall2, 0.1f);
                         }
                     }
                     isRinging = false;

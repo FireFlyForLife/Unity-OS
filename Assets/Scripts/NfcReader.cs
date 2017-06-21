@@ -36,7 +36,7 @@ public class NfcReader : MonoBehaviour
         {
             Debug.Log("Error opening NFC Reader: " + ex.Message.ToString());
         }
-        stream.ReadTimeout = 100;
+        stream.ReadTimeout = 20;
 
 
     }

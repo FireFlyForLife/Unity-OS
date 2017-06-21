@@ -6,12 +6,4 @@ using InGameComputer;
 public class PrVrijPc : VirtualComputer
 {
     public NfcReader Nfcreader;
-
-	void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
 }

@@ -19,7 +19,7 @@ public class WindowHeader : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         offset = (Vector2)parent.transform.position - eventData.position;
     }
 
-    //TODO: Make this drag a box around and not directly move the window
+    //TODO: Make this drag a box around and not directly move the Window
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
         parent.transform.position = eventData.position + offset;

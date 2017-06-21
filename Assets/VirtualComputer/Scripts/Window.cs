@@ -22,7 +22,22 @@ namespace InGameComputer
             get { return titleText.text; }
         }
 
-        [SerializeField] private startvariables tbvars;
+        public startvariables tbvars;
+
+        private VirtualComputer computer;
+        public VirtualComputer Computer
+        {
+            get
+            {
+                if (!computer)
+                    computer = GetComponentInParent<VirtualComputer>();
+                return computer;
+            }
+            set
+            {
+                computer = value;
+            }
+        }
 
         public Sprite Icon
         {
@@ -52,6 +67,7 @@ namespace InGameComputer
                 gameObject.SetActive(!IsMinimized);
             }
         }
+
         [SerializeField] private Text titleText;
         [SerializeField] private Image icon;
 
@@ -59,14 +75,21 @@ namespace InGameComputer
         {
             if (!titleText) titleText = transform.Find("Header/TitleArea/Text").GetComponent<Text>();
             if (!icon) icon = transform.Find("Header/TitleArea/ProgramIcon").GetComponent<Image>();
-            Title = tbvars.title;
-            Taskbarbutton.IconInButton = tbvars.icon;
-            Taskbarbutton.titleInButton = tbvars.buttontext;
+
+            if(!string.IsNullOrEmpty(tbvars.title)) Title = tbvars.title;
+            if(tbvars.icon) Taskbarbutton.IconInButton = tbvars.icon;
+            //if (!string.IsNullOrEmpty(tbvars.buttontext)) Taskbarbutton.titleInButton = tbvars.buttontext;
         }
 
         void Update()
         {
 
+        }
+
+        public void Close()
+        {
+            Computer.Taskbar.RemoveButton(Taskbarbutton);
+            Destroy(gameObject);
         }
     }
 

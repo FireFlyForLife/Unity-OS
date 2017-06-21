@@ -24,7 +24,7 @@ namespace InGameComputer
             private set { window = value; }
         }
         
-        //if window is empty
+        //if Window is empty
         public GameObject WindowPrefab;
 
         public void SetupComputer(VirtualComputer pc)
