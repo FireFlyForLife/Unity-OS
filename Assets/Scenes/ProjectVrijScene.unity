@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1676,9 +1676,9 @@ RectTransform:
   m_Father: {fileID: 890412601}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 33, y: -12.9}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &283749478
@@ -2686,6 +2686,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d8fadbdf744804988735cbab668596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Taskbarbutton: {fileID: 0}
+  tbvars:
+    title: 
+    icon: {fileID: 0}
+    buttontext: 
   titleText: {fileID: 0}
   icon: {fileID: 0}
 --- !u!114 &591705269
@@ -3087,6 +3092,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d8fadbdf744804988735cbab668596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Taskbarbutton: {fileID: 0}
+  tbvars:
+    title: 
+    icon: {fileID: 0}
+    buttontext: 
   titleText: {fileID: 0}
   icon: {fileID: 0}
 --- !u!114 &641582351
@@ -7238,6 +7248,8 @@ MonoBehaviour:
   Screen: {fileID: 1837780933}
   Audio: {fileID: 1837780937}
   ProgramManager: {fileID: 647673462}
+  Taskbar: {fileID: 0}
+  TaskbarButton: {fileID: 0}
 --- !u!114 &1837780936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7346,6 +7358,8 @@ MonoBehaviour:
   HackerMiniGame1: {fileID: 2109132157}
   HackerMiniGame2: {fileID: 1855869805}
   DetonateNukesProgram: {fileID: 63923811}
+  desktopicon: {fileID: 0}
+  floppyicons: []
 --- !u!114 &1837780939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7360,6 +7374,8 @@ MonoBehaviour:
   Screen: {fileID: 1837780933}
   Audio: {fileID: 1837780937}
   ProgramManager: {fileID: 647673462}
+  Taskbar: {fileID: 0}
+  TaskbarButton: {fileID: 0}
   Nfcreader: {fileID: 1837780938}
 --- !u!1001 &1855869801
 Prefab:
