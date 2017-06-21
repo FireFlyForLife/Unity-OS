@@ -67,6 +67,7 @@ public class NfcReader : MonoBehaviour
                                     Debug.Log("Open Hacking Minigame 1");
                                     HackerMiniGame1.SetActive(true);
                                     HackerMiniGame2.SetActive(false);
+                                    HackerMiniGame1.transform.SetAsLastSibling();
                                     desktopicon.program = HackerMiniGame1.gameObject;
                                     desktopicon.iconTexture = floppyicons[0];
                                     break;
@@ -74,6 +75,8 @@ public class NfcReader : MonoBehaviour
                                     Debug.Log("Open Hacking Minigame 2");
                                     HackerMiniGame2.SetActive(true);
                                     HackerMiniGame1.SetActive(false);
+                                    HackerMiniGame2.transform.SetAsLastSibling();
+
                                     desktopicon.program = HackerMiniGame2.gameObject;
                                     desktopicon.iconTexture = floppyicons[1];
                                     break;
@@ -81,6 +84,8 @@ public class NfcReader : MonoBehaviour
                                     Debug.Log("Open Detonate Nukes Program");
                                     //Show popup
                                     DetonateNukesProgram.SetActive(true);
+                                    DetonateNukesProgram.transform.SetAsLastSibling();
+
                                     desktopicon.program = DetonateNukesProgram.gameObject;
                                     desktopicon.iconTexture = floppyicons[2];
                                     break;

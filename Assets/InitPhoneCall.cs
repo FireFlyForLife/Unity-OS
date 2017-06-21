@@ -62,11 +62,11 @@ public class InitPhoneCall : MonoBehaviour {
                         audiosource.Stop();
                         if (!launchCode)
                         {
-                            audiosource.PlayOneShot(phonecall, 0.1f);
+                            audiosource.PlayOneShot(phonecall, 0.05f);
                         }
                         else
                         {
-                            audiosource.PlayOneShot(phonecall2, 0.1f);
+                            audiosource.PlayOneShot(phonecall2, 0.05f);
                         }
                     }
                     isRinging = false;
