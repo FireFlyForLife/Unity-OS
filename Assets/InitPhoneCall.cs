@@ -15,10 +15,11 @@ public class InitPhoneCall : MonoBehaviour {
     public string portname = "COM4";
     SerialPort stream; //Set the port (com4) and the baud rate (9600, is standard on most devices)
 
+    private bool _launchCode = false;
     public bool launchCode
     {
-        set { launchCode = value; }
-        get { return launchCode; }
+        set { _launchCode = value; }
+        get { return _launchCode; }
     }
     // Use this for initialization
     void Start () {
@@ -45,10 +46,18 @@ public class InitPhoneCall : MonoBehaviour {
             //Read the information
             try
             {
+                string value = stream.ReadLine();
+
+                if (value == "Horn has been replaced")
+                {
+                    audiosource.Stop();
+                }
+
                 if (isRinging)
                 {
-                    string value = stream.ReadLine();
-                    if (value == "start")
+                    
+                    Debug.Log(value);
+                    if (value == "Horn has been pickup")
                     {
                         audiosource.Stop();
                         if (!launchCode)
@@ -70,10 +79,28 @@ public class InitPhoneCall : MonoBehaviour {
             }
         }
     }
+
+    IEnumerator ringForLaunchcodes()
+    {
+        yield return new WaitForSeconds(7f);
+        ringPhone();
+    }
+
+    public void startRingForLaunchcodes()
+    {
+        StartCoroutine("ringForLaunchcodes"); 
+    }
+
+    public void ringPhone()
+    {
+        audiosource.Stop();
+        audiosource.PlayOneShot(ring);
+        isRinging = true;
+    }
+
     IEnumerator PhoneCall()
     {
         yield return new WaitForSeconds(30);
-        audiosource.PlayOneShot(ring);
-        isRinging = true;
+        ringPhone();
     }
 }
