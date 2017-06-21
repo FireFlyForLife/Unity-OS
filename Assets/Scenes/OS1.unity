@@ -1080,6 +1080,10 @@ Prefab:
       propertyPath: tbvars.buttontext
       value: Decrypt
       objectReference: {fileID: 0}
+    - target: {fileID: 1457396287599992, guid: b7b42949cc9f0e441bbe0aea662a2f9d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7b42949cc9f0e441bbe0aea662a2f9d, type: 2}
   m_IsPrefabParent: 0
@@ -1413,6 +1417,7 @@ GameObject:
   - component: {fileID: 192510093}
   - component: {fileID: 192510091}
   - component: {fileID: 192510090}
+  - component: {fileID: 192510092}
   - component: {fileID: 192510089}
   m_Layer: 5
   m_Name: ComputerCanvas
@@ -1540,6 +1545,23 @@ MonoBehaviour:
   TaskbarButton: {fileID: 1502634443150620, guid: 530b79c0722389846aaf86aac75669da,
     type: 2}
   Nfcreader: {fileID: 192510090}
+--- !u!114 &192510092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 192510088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9189c609467001e48ad20b72e54d541f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audiosource: {fileID: 192510089}
+  ring: {fileID: 8300000, guid: 73ebd40f882e7c949bf4ad904e52c73a, type: 3}
+  phonecall: {fileID: 8300000, guid: be4f2886fdeccde4898bf85d521dc90e, type: 3}
+  phonecall2: {fileID: 8300000, guid: b923ee150ac1658469da850e2aff5603, type: 3}
+  isRinging: 0
+  portname: COM4
 --- !u!114 &192510093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3705,6 +3727,10 @@ Prefab:
       propertyPath: tbvars.buttontext
       value: Firewall ver.2 - Message
       objectReference: {fileID: 0}
+    - target: {fileID: 1065452575632480, guid: 127e7c79e593f6642980a46653c74727, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 127e7c79e593f6642980a46653c74727, type: 2}
   m_IsPrefabParent: 0
@@ -5076,17 +5102,17 @@ Prefab:
     - target: {fileID: 224987202202328254, guid: 977943e4776ff9f428c1e5a864c7a437,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224987202202328254, guid: 977943e4776ff9f428c1e5a864c7a437,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224987202202328254, guid: 977943e4776ff9f428c1e5a864c7a437,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -12.9
       objectReference: {fileID: 0}
     - target: {fileID: 224987202202328254, guid: 977943e4776ff9f428c1e5a864c7a437,
         type: 2}
@@ -5232,6 +5258,10 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: -0.6000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 1779647061047782, guid: 977943e4776ff9f428c1e5a864c7a437, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 977943e4776ff9f428c1e5a864c7a437, type: 2}
@@ -7142,7 +7172,7 @@ Prefab:
     - target: {fileID: 114299138640768252, guid: 5fd0f75775efa274ba4f0eba1fddab51,
         type: 2}
       propertyPath: undersideText
-      value: DocWriter.exe
+      value: DocWriter
       objectReference: {fileID: 0}
     - target: {fileID: 114299138640768252, guid: 5fd0f75775efa274ba4f0eba1fddab51,
         type: 2}
@@ -7427,7 +7457,7 @@ Prefab:
     - target: {fileID: 114299138640768252, guid: 5fd0f75775efa274ba4f0eba1fddab51,
         type: 2}
       propertyPath: undersideText
-      value: Instructions.txt
+      value: Instructions
       objectReference: {fileID: 0}
     - target: {fileID: 114299138640768252, guid: 5fd0f75775efa274ba4f0eba1fddab51,
         type: 2}
@@ -7483,7 +7513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1437322976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8050,7 +8080,7 @@ Prefab:
     - target: {fileID: 114630233823108448, guid: 061445699a4e681488b6ff6b976b8169,
         type: 2}
       propertyPath: m_Text
-      value: 'Add digid ''4'' to descripting sequence '
+      value: First digit is '0' in decrypt sequence. Second digit is '4'.
       objectReference: {fileID: 0}
     - target: {fileID: 1675339440812644, guid: 061445699a4e681488b6ff6b976b8169, type: 2}
       propertyPath: m_IsActive
@@ -8099,6 +8129,20 @@ Prefab:
         type: 2}
       propertyPath: tbvars.buttontext
       value: Firewall ver.1 - Message
+      objectReference: {fileID: 0}
+    - target: {fileID: 224174173959082976, guid: 061445699a4e681488b6ff6b976b8169,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 89.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 224174173959082976, guid: 061445699a4e681488b6ff6b976b8169,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511168687489734, guid: 061445699a4e681488b6ff6b976b8169, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 061445699a4e681488b6ff6b976b8169, type: 2}
@@ -8857,6 +8901,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 192510092}
+        m_MethodName: set_launchCode
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1609116966
@@ -9433,7 +9488,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1178857305760852, guid: d382427cc28add64eaa0f3538b765441, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114537596191837068, guid: d382427cc28add64eaa0f3538b765441,
         type: 2}
@@ -9450,6 +9505,10 @@ Prefab:
         type: 2}
       propertyPath: tbvars.buttontext
       value: Launchcode
+      objectReference: {fileID: 0}
+    - target: {fileID: 1841150945786222, guid: d382427cc28add64eaa0f3538b765441, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d382427cc28add64eaa0f3538b765441, type: 2}

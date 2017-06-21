@@ -74,7 +74,10 @@ namespace InGameComputer
         {
             if (eventData.clickCount >= 2)
             {
-                program.SetActive(true);
+                if (program)
+                {
+                    program.SetActive(true);
+                }
                 eventData.clickTime = 0;
                 eventData.clickCount = 0;
             }
