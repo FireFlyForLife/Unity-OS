@@ -20,14 +20,38 @@ namespace InGameComputer
         [SerializeField]
         Text text;
 
-        [SerializeField]
         public Texture iconTexture;
-        [SerializeField]
         public String undersideText = "Program.exe";
-        [SerializeField]
         public GameObject program;
 
         private Vector2 dragOffset = Vector2.zero;
+
+        private bool selected;
+        public bool Selected
+        {
+            get
+            {
+                return selected;
+            }
+            set
+            {
+                selected = value;
+
+                if (selected)
+                {
+                    //remove every icon selected state
+                    foreach (var icon in transform.parent.GetComponentsInChildren<DesktopIcon>())
+                    {
+                        if(icon != this)
+                            icon.Selected = false;
+                    }
+
+                    enableSelectedAppearance();
+                }
+                else
+                    disableSelectedAppearance();
+            }
+        }
 
         void Start()
         {
@@ -45,12 +69,25 @@ namespace InGameComputer
 
         }
 
-        void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
+        void enableSelectedAppearance()
         {
             icon.gameObject.GetComponent<CanvasRenderer>().SetAlpha(0.8f);
             icon.gameObject.GetComponent<CanvasRenderer>().SetColor(selectedColor);
 
             underTextImage.enabled = true;
+        }
+
+        void disableSelectedAppearance()
+        {
+            icon.gameObject.GetComponent<CanvasRenderer>().SetAlpha(1f);
+            icon.gameObject.GetComponent<CanvasRenderer>().SetColor(Color.white);
+
+            underTextImage.enabled = false;
+        }
+
+        void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
+        {
+            enableSelectedAppearance();
 
             dragOffset = (Vector2)transform.position - eventData.position;
         }
@@ -62,16 +99,16 @@ namespace InGameComputer
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)
         {
-            icon.gameObject.GetComponent<CanvasRenderer>().SetAlpha(1f);
-            icon.gameObject.GetComponent<CanvasRenderer>().SetColor(Color.white);
-
-            underTextImage.enabled = false;
+            disableSelectedAppearance();
 
             dragOffset = Vector2.zero;
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            //make this one selected
+            Selected = true;
+
             if (eventData.clickCount >= 2)
             {
                 if (program)
