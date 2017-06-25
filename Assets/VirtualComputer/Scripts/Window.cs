@@ -77,7 +77,7 @@ namespace InGameComputer
             if (!icon) icon = transform.Find("Header/TitleArea/ProgramIcon").GetComponent<Image>();
 
             if(!string.IsNullOrEmpty(tbvars.title)) Title = tbvars.title;
-            if(tbvars.icon) Taskbarbutton.IconInButton = tbvars.icon;
+            if(tbvars.icon && Taskbarbutton) Taskbarbutton.IconInButton = tbvars.icon;
             //if (!string.IsNullOrEmpty(tbvars.buttontext)) Taskbarbutton.titleInButton = tbvars.buttontext;
         }
 
